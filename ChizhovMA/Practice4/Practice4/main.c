@@ -19,10 +19,9 @@ float price[N] = { 62.00, 100.00, 50.00, 35.00, 80.00, 73.00, 27.00, 94.00, 15.0
 int discount[N] = { 10, 25, 15, 5, 0, 5, 10, 20, 0, 0, };
 
 
-void Input(int* c, char* b[50])
+int Input(int* c, char* b[50])
  {
-	
-	int num_basket = 0, i;
+	int num_basket = 0, i, j, k;
 	char code[5];
 
 	printf("Enter the product code or 'exit' to generate a receipt\n");
@@ -40,20 +39,29 @@ void Input(int* c, char* b[50])
 					printf("Enter the quantity: ");
 					scanf("%d", &(c[num_basket]));
 					num_basket++;
+					for (j = 0; j < num_basket; j++)
+						for (k = 0; k < num_basket; k++)
+							if ((strcmp(b[j], b[k]) == 0) && (k != j))
+							{
+								c[j] += c[k];
+								num_basket--;
+							}
+							
 				}
 			}
 		}
 	}
+	return num_basket;
 }
 
-int Print(int* c, char* b[50])
+float Print(int* c, char* b[50], int n)
 {
 	int i, j;
 	int num_basket = 0;
 	float price_disc, s = 0;
 
 	printf("\nYour receipt\n");
-	for (i = 0; i < num_basket; i++)
+	for (i = 0; i < n; i++)
 	{
 		for (j = 0; j < N; j++)
 			if (strcmp(b[i], codes[j]) == 0)
@@ -68,12 +76,13 @@ int Print(int* c, char* b[50])
 
 int main()
 {
-	int counts[100] = { 0 };
+	int counts[100] = {0};
 	char* basket[50];
+	int num;
 	float sum;
 
-	Input(counts, basket);
-	sum = Print(counts, basket);
+	num = Input(counts, basket);
+	sum = Print(counts, basket, num);
 
 	
 	printf("For payment:\n%.2f", sum);
