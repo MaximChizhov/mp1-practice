@@ -21,19 +21,22 @@ int discount[N] = { 10, 25, 15, 5, 0, 5, 10, 20, 0, 0, };
 
 int Input(int* c, char* b[50])
  {
-	int num_basket = 0, i, j, k;
+	int num_basket = 0, i, j, k, flag;
 	char code[5];
 
 	printf("Enter the product code or 'exit' to generate a receipt\n");
 	while (strcmp(code, "exit"))
 	{
-		gets(code);
+		
+		scanf("%s", code, 5);
+		flag = 0;
 		if (strcmp(code, "exit"))
 		{
 			for (i = 0; i < N; i++)
 			{
 				if (strcmp(code, codes[i]) == 0)
 				{
+					flag = 1;
 					printf("%s %.2f %d%%\n", products[i], price[i], discount[i]);
 					b[num_basket] = codes[i];
 					printf("Enter the quantity: ");
@@ -46,9 +49,10 @@ int Input(int* c, char* b[50])
 								c[j] += c[k];
 								num_basket--;
 							}
-							
 				}
 			}
+			if (flag == 0)
+				printf("Product is not found\n");
 		}
 	}
 	return num_basket;
@@ -80,12 +84,8 @@ int main()
 	char* basket[50];
 	int num;
 	float sum;
-
 	num = Input(counts, basket);
 	sum = Print(counts, basket, num);
-
-	
 	printf("For payment:\n%.2f", sum);
 	return 0;
-
 }
