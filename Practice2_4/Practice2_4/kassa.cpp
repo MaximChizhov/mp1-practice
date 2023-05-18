@@ -237,6 +237,7 @@ void Enter(TProduct** p, int cntStr)
 							break;
 						}
 						rep.Remove_Ind(in);
+						cout << "Successfully" << endl;
 						cout << rep;
 					}
 					if (num_r == 2)

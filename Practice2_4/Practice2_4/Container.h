@@ -70,56 +70,68 @@ public:
 			data[size++] = value;
 		}
 		else
-		{
-			cout << "Enter the quantity of the product: ";
-			cin >> k;
-			int pos = Find(value);
-			data[pos].count += k;
-			data[pos].sum += value.sum * k;
-		}
+			add_count(value);
 	};
+	void add_count(T value)
+	{
+		int k;
+		cout << "Enter the quantity of the product: ";
+		cin >> k;
+		int pos = Find(value);
+		data[pos].count += k;
+		data[pos].sum += value.sum * k;
+	}
 	void add_before(T value, int ind)
 	{
 		int ind_ = ind - 1;
-		if (ind > -1 && ind < size + 1)
+		if (Find(value) == -1)
 		{
 			if (size == n)
 				resize();
-			for (int i = size - 1; i >= ind_; i--)
-				data[i + 1] = data[i];
-			int k;
-			cout << "Enter the quantity of the product: ";
-			cin >> k;
-			value.count = k;
-			value.sum = value.sum * k;
-			data[ind_] = value;
-			size++;
-			cout << "Successfully" << endl;
+			if (ind > -1 && ind < size + 1)
+			{
+				for (int i = size - 1; i >= ind_; i--)
+					data[i + 1] = data[i];
+				int k;
+				cout << "Enter the quantity of the product: ";
+				cin >> k;
+				value.count = k;
+				value.sum = value.sum * k;
+				data[ind_] = value;
+				size++;
+				cout << "Successfully" << endl;
+			}
+			else
+				cout << "Error, position not found" << endl;
 		}
 		else
-			cout << "Error, position not found" << endl;;
+			add_count(value);
 	};
 	void add_after(T value, int ind)
 	{
 		int k;
 		int ind_ = ind;
-		if (ind > 0 && ind < size + 1)
+		if (Find(value) == -1)
 		{
 			if (size == n)
 				resize();
-
-			for (int i = size - 1; i >= ind_; i--)
-				data[i + 1] = data[i];
-			cout << "Enter the quantity of the product: ";
-			cin >> k;
-			value.count = k;
-			value.sum = value.sum * k;
-			data[ind_] = value;
-			size++;
-			cout << "Successfully" << endl;
+			if (ind > 0 && ind < size + 1)
+			{
+				for (int i = size - 1; i >= ind_; i--)
+					data[i + 1] = data[i];
+				cout << "Enter the quantity of the product: ";
+				cin >> k;
+				value.count = k;
+				value.sum = value.sum * k;
+				data[ind_] = value;
+				size++;
+				cout << "Successfully" << endl;
+			}
+			else
+				cout << "Error, position not found" << endl;
 		}
 		else
-			cout << "Error, position not found" << endl;
+			add_count(value);
 	};
 	void remove(const T& value)
 	{
@@ -135,6 +147,8 @@ public:
 					cout << "Error, the quantity of products in the receipt is more than you entered" << endl;
 					break;
 				}
+				if (num == data[i].count)
+					remove_ind(i);
 				data[i].count -= num;
 				data[i].sum -= value.sum * num;
 				cout << "Successfully" << endl;
@@ -148,7 +162,7 @@ public:
 			for (int i = ind; i < n - 1; i++)
 				data[i] = data[i + 1];
 		size--;
-		cout << "Successfully" << endl;
+
 	};
 	const int& Size() const { return size; }
 	int& N() { return n; }
