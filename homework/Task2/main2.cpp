@@ -1,4 +1,5 @@
 #include <iostream>
+#include "InOut.h"
 #include "header2.h"
 
 using namespace std;
@@ -14,8 +15,8 @@ int main()
 	float* arr;
 	arr = new float[N];
 
-	Scan(arr, N);
 	Enter(arr, N);
+	Input(arr, N);
 	Print(arr, N);
 	Replace(arr, N);
 	Print(arr, N);

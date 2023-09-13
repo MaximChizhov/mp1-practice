@@ -1,3 +1,4 @@
+#include "InOut.h"
 #include "header.h"
 #include <iostream>
 using namespace std;
@@ -12,7 +13,7 @@ int main()
 	Enter(arr, N);
 	Input(arr, N);
 	Change(arr, N);
-	Out(arr, N);
+	Print(arr, N);
 
 	delete[] arr;
 	return 0;

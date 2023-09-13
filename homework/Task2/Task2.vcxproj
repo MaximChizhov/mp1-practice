@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\ITMM-230042\Documents\Repository\mp1-practice\homework\staticlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,6 +133,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\staticlib\staticlib.vcxproj">
+      <Project>{0b691daa-1f49-4516-94aa-fbb5d2b83c4b}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

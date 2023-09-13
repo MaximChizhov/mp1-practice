@@ -3,32 +3,6 @@
 
 using namespace std;
 
-void Scan(int* arr, int n)
-{
-	int num;
-	for (int i = 0; i < n; i++)
-	{
-		num = rand() % 20 + 1;
-		arr[i] = num;
-	}
-}
-
-void Enter(int* arr, int n)
-{
-	float a;
-	for (int i = 0; i < n; i++)
-	{
-		cin >> a;
-		arr[i] = a;
-	}
-}
-
-void Print(int* arr, int n)
-{
-	for (int i = 0; i < n; i++)
-		cout << arr[i] << ' ';
-	cout << endl;
-}
 
 int Count(int* arr, int n)
 {
