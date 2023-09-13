@@ -33,14 +33,14 @@ void Print(float* arr, int n)
 void Replace(float* arr, int n)
 {
 	int N = n / 2;
-	int j = n - 1;
+	int j = n / 2;
 	for (int i = 0; i < N; i++)
-		while (j >= N)
+		while (j < n )
 		{
 			float tmp = arr[i];
 			arr[i] = arr[j];
 			arr[j] = tmp;
-			j--;
+			j++;
 			break;
 		}
 }

@@ -20,5 +20,6 @@ int main()
 	Replace(arr, N);
 	Print(arr, N);
 
+	delete[] arr;
 	return 0;
 }

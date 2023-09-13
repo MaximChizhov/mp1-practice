@@ -22,5 +22,6 @@ int main()
 	NewArr(arr, arr2, count, N);
 	Print(arr2, count);
 
+	delete[] arr;
 	return 0;
 }
