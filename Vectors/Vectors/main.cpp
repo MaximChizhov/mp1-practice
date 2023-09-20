@@ -42,7 +42,7 @@ int main()
 		}
 		case 4:
 		{
-			float cosine = Cos(v1, v2);
+			float cosine = v1.Cos(v2);
 			cout << cosine << endl;
 			break;
 		}
