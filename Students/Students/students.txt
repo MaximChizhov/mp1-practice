@@ -1,0 +1,5 @@
+Ivanov;Ivan;Ivanovich;01;01;1995;+79876543210;
+Petrova;Anna;Petrovna;15;05;1998;+79123456789;
+Smirnov;Alexey;Sergeevich;03;09;1996;+79012345678;
+Nikolaev;Dmitry;Igorevich;09;12;1994;+79018765432;
+Smirnov;Aleksander;Bogdanovich;09;04;1994;+79407652231;

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Students", "Students\Students.vcxproj", "{B99CF438-3D33-4828-BCDB-97211E8BAA31}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vectors", "vectors\vectors.vcxproj", "{305FD87F-749E-468D-8174-19F0A0445FD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{B99CF438-3D33-4828-BCDB-97211E8BAA31}.Release|x64.Build.0 = Release|x64
 		{B99CF438-3D33-4828-BCDB-97211E8BAA31}.Release|x86.ActiveCfg = Release|Win32
 		{B99CF438-3D33-4828-BCDB-97211E8BAA31}.Release|x86.Build.0 = Release|Win32
+		{305FD87F-749E-468D-8174-19F0A0445FD3}.Debug|x64.ActiveCfg = Debug|x64
+		{305FD87F-749E-468D-8174-19F0A0445FD3}.Debug|x64.Build.0 = Debug|x64
+		{305FD87F-749E-468D-8174-19F0A0445FD3}.Debug|x86.ActiveCfg = Debug|Win32
+		{305FD87F-749E-468D-8174-19F0A0445FD3}.Debug|x86.Build.0 = Debug|Win32
+		{305FD87F-749E-468D-8174-19F0A0445FD3}.Release|x64.ActiveCfg = Release|x64
+		{305FD87F-749E-468D-8174-19F0A0445FD3}.Release|x64.Build.0 = Release|x64
+		{305FD87F-749E-468D-8174-19F0A0445FD3}.Release|x86.ActiveCfg = Release|Win32
+		{305FD87F-749E-468D-8174-19F0A0445FD3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
