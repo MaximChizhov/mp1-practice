@@ -12,7 +12,6 @@ private:
 	T* vec;
 	int size;
 public:
-	//TVector();
 	TVector(int _size);
 	TVector(const TVector<T>& obj);
 	~TVector();
@@ -39,12 +38,6 @@ public:
 	double Length() const;
 };
 
-/*template <class T>
-TVector<T>::TVector()
-{
-	size = 0;
-	vec = nullptr;
-};*/
 template <typename T>
 TVector<T>::TVector(int _size)
 {

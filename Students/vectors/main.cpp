@@ -34,10 +34,14 @@ int main()
     cout << "Scalar product of vectors: " << dotProduct << endl;
 
     if (vector1 == vector2)
-        cout << "The vectors are equal" << endl;
+        cout << "operator ==: The vectors are equal" << endl;
+    else
+        cout << "operator ==: The vectors are not equal" << endl;
 
     if (vector1 != vector2)
-        cout << "Vectors are not equal" << endl;
+        cout << "operator !=: The vectors are not equal" << endl;
+    else
+        cout << "operator !=: The vectors are equal" << endl;
 
     TVector<int> assignedVector = vector1;
     cout << "Assigned vector: " << assignedVector << endl;

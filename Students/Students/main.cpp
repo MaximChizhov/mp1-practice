@@ -15,12 +15,13 @@ int main()
     int* mas = new int[n];
     for (int s = 0; s < n; s++)
         mas[s] = 0;
-    Group group(n);
+    Group group(n, n);
     read(students, n, f);
     group.setStudents(students);
 
     for (int i = 0; i < n; i++)
         group.printStudents(i);
+        //cout << *(students[i]) << endl;
 
     int num = -1;
     while (num != 0)
@@ -38,32 +39,37 @@ int main()
         {
         case 1:
         {
-            int k = Search(students, n, mas);
+            int k = group.Search(mas);
             if (k == 0)
                 cout << "Not found" << endl;
             else
             {
                 for (int j = 0; j < k; j++)
-                    group.printStudents(mas[j]);
+                {
+                    int l = mas[j];
+                    group.printStudents(l);
+                    //cout << *(students[l]) << endl;
+                }
+                    
             }
             break;
         }
         case 2:
         {
             Add(&group);
-            students = group.getStudent();
             n = group.getCount();
             for (int i = 0; i < n; i++)
                 group.printStudents(i);
+                //cout << &students[i] << endl;
             break;
         }
         case 3:
         {
             Delete(&group);
-            students = group.getStudent();
             n = group.getCount();
             for (int i = 0; i < n; i++)
                 group.printStudents(i);
+                //cout << &students[i] << endl;
             break;
         }
         }
