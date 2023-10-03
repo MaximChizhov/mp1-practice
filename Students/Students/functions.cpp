@@ -2,7 +2,6 @@
 #include <fstream>
 #include <iomanip>
 #include <stdio.h>
-#include <string.h>
 #include <string>
 #include "header.h"
 
@@ -20,7 +19,7 @@ Group::Group(int count, int size)
 
 Group::~Group()
 {
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < count; i++) {
 		delete st[i];
 	}
 	delete[] st;
@@ -28,7 +27,7 @@ Group::~Group()
 
 void Group::setStudents(Student** students)
 {
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < count; i++) {
 		st[i] = new Student();
 		st[i]->surname = students[i]->surname;
 		st[i]->name = students[i]->name;
@@ -38,6 +37,14 @@ void Group::setStudents(Student** students)
 		st[i]->date.year = students[i]->date.year;
 		st[i]->num_phone = students[i]->num_phone;
 	}
+}
+Group::Group(const Group& g)
+{
+	count = g.count;
+	size = g.count;
+	st = new Student * [size];
+	for (int i = 0; i < count; i++)
+		st[i] = g.st[i];
 }
 
 void Group::resize()
@@ -157,20 +164,25 @@ void removeFirstN(string& str, int n)
 	str.erase(0, n);
 }
 
-/*ostream& operator<<(ostream& out, const Student& st)
-{
-	out << "<===========================================>" << endl;
-	out << "FIO: " << st.surname << " " << st.name << " " << st.patronymic << endl;
-	out << "Date: " << setfill('0') << setw(2) << st.date.day << '.' << setfill('0') << setw(2) << st.date.month << '.' << st.date.year << endl;
-	out << "Phone number: " << st.num_phone << endl;
-	return out;
-}*/
 void Group::printStudents(int i)
 {
 	cout << "<===========================================>" << endl;
 	cout << "FIO: " << st[i]->surname << " " << st[i]->name << " " << st[i]->patronymic << endl;
 	cout << "Date: " << setfill('0') << setw(2) << st[i]->date.day << '.' << setfill('0') << setw(2) << st[i]->date.month << '.' << st[i]->date.year << endl;
 	cout << "Phone number: " << st[i]->num_phone << endl;
+
+}
+ostream& operator<<(ostream& out, const Group& gr)
+{
+	for (int i = 0; i < gr.count; i++)
+	{
+		out << "<===========================================>" << endl;
+		out << "FIO: " << gr.st[i]->surname << " " << gr.st[i]->name << " " << gr.st[i]->patronymic << endl;
+		out << "Date: " << setfill('0') << setw(2) << gr.st[i]->date.day << '.' << setfill('0') << setw(2) << gr.st[i]->date.month << '.' << gr.st[i]->date.year << endl;
+		out << "Phone number: " << gr.st[i]->num_phone << endl;
+	}
+
+	return out;
 }
 
 int Group::Search(int* mas)
@@ -258,7 +270,7 @@ Group* Delete(Group* gr)
 	else
 	{
 		for (int j = 0; j < k; j++)
-			gr->printStudents(j);
+			gr->printStudents(mas[j]);
 		int m = gr->SearchByName(mas);
 		gr->remove(mas[0]);
 	}
@@ -284,4 +296,39 @@ Group* Add(Group* gr)
 	gr->add(newStudent);
 
 	return gr;
+}
+
+bool isValidDate(int day, int month, int year)
+{
+	if (year <= 1930 || year >= 2010)
+		return false;
+
+	if (month < 1 || month > 12)
+		return false;
+
+
+	// Проверяем количество дней в месяце
+	int daysInMonth;
+	switch (month)
+	{
+	case 2: // Февраль
+		if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
+			daysInMonth = 29; // Високосный год
+		else
+			daysInMonth = 28;
+		break;
+	case 4: // Апрель
+	case 6: // Июнь
+	case 9: // Сентябрь
+	case 11: // Ноябрь
+		daysInMonth = 30;
+		break;
+	default: // Для остальных месяцев
+		daysInMonth = 31;
+		break;
+	}
+	if (day < 1 || day > daysInMonth)
+		return false;
+
+	return true;
 }

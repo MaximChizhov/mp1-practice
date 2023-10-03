@@ -1,7 +1,6 @@
 #include "header.h"
 #include <iostream>
 #include <fstream>
-#include <string>
 using namespace std;
 
 int main()
@@ -19,13 +18,12 @@ int main()
     read(students, n, f);
     group.setStudents(students);
 
-    for (int i = 0; i < n; i++)
-        group.printStudents(i);
-        //cout << *(students[i]) << endl;
+    cout << group << endl;
 
     int num = -1;
     while (num != 0)
     {
+
         do {
             cout << endl;
             cout << "1) Student search" << endl;
@@ -48,9 +46,7 @@ int main()
                 {
                     int l = mas[j];
                     group.printStudents(l);
-                    //cout << *(students[l]) << endl;
                 }
-                    
             }
             break;
         }
@@ -58,22 +54,19 @@ int main()
         {
             Add(&group);
             n = group.getCount();
-            for (int i = 0; i < n; i++)
-                group.printStudents(i);
-                //cout << &students[i] << endl;
+            cout << group << endl;
             break;
         }
         case 3:
         {
             Delete(&group);
             n = group.getCount();
-            for (int i = 0; i < n; i++)
-                group.printStudents(i);
-                //cout << &students[i] << endl;
+            cout << group << endl;
             break;
         }
         }
     }
     delete[] mas;
+
     return 0;
 }
