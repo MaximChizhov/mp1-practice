@@ -19,6 +19,7 @@ struct Student
 	string patronymic;
 	Date date;
 	string num_phone;
+	friend ostream& operator<<(ostream& out, const Student& st);
 };
 
 class Group
@@ -40,7 +41,7 @@ public:
 	int SearchBySurname(int* mas);
 	int SearchByName(int* mas);
 	int SearchByYear(int* mas);
-	friend ostream& operator<<(ostream& out, const Group& gr);
+	Student& operator[](int ind);
 	Student** getStudent()
 	{
 		return st;
@@ -49,8 +50,8 @@ public:
 	{
 		return count;
 	}
-	void printStudents(int i);
-
+	
+	friend ostream& operator<<(ostream& out, const Group& gr);
 };
 
 void read(Student** st, int n, string& f);

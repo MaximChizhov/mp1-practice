@@ -38,6 +38,7 @@ void Group::setStudents(Student** students)
 		st[i]->num_phone = students[i]->num_phone;
 	}
 }
+
 Group::Group(const Group& g)
 {
 	count = g.count;
@@ -72,6 +73,10 @@ void Group::add(const Student& student)
 	count++;
 }
 
+Student& Group::operator[](int ind)
+{
+	return *st[ind];
+}
 void read(Student** st, int n, string& f)
 {
 
@@ -164,22 +169,19 @@ void removeFirstN(string& str, int n)
 	str.erase(0, n);
 }
 
-void Group::printStudents(int i)
+ostream& operator<<(ostream& out, const Student& st)
 {
 	cout << "<===========================================>" << endl;
-	cout << "FIO: " << st[i]->surname << " " << st[i]->name << " " << st[i]->patronymic << endl;
-	cout << "Date: " << setfill('0') << setw(2) << st[i]->date.day << '.' << setfill('0') << setw(2) << st[i]->date.month << '.' << st[i]->date.year << endl;
-	cout << "Phone number: " << st[i]->num_phone << endl;
-
+	cout << "FIO: " << st.surname << " " << st.name << " " << st.patronymic << endl;
+	cout << "Date: " << setfill('0') << setw(2) << st.date.day << '.' << setfill('0') << setw(2) << st.date.month << '.' << st.date.year << endl;
+	cout << "Phone number: " << st.num_phone << endl;
+	return out;
 }
 ostream& operator<<(ostream& out, const Group& gr)
 {
 	for (int i = 0; i < gr.count; i++)
 	{
-		out << "<===========================================>" << endl;
-		out << "FIO: " << gr.st[i]->surname << " " << gr.st[i]->name << " " << gr.st[i]->patronymic << endl;
-		out << "Date: " << setfill('0') << setw(2) << gr.st[i]->date.day << '.' << setfill('0') << setw(2) << gr.st[i]->date.month << '.' << gr.st[i]->date.year << endl;
-		out << "Phone number: " << gr.st[i]->num_phone << endl;
+		out << *(gr.st[i]) << endl;
 	}
 
 	return out;
@@ -270,9 +272,23 @@ Group* Delete(Group* gr)
 	else
 	{
 		for (int j = 0; j < k; j++)
-			gr->printStudents(mas[j]);
+		{
+			int l = mas[j];
+			cout << j+1 << endl << *(gr->getStudent()[l]) << endl;
+		}
+			
 		int m = gr->SearchByName(mas);
-		gr->remove(mas[0]);
+		if (m == 0)
+			cout << "Not Found";
+		if (m==1)
+			gr->remove(mas[0]);
+		if (m > 1)
+		{
+			int num;
+			cout << "Enter a number: ";
+			cin >> num;
+			gr->remove(mas[num-1]);
+		}
 	}
 	delete[] mas;
 	return gr;

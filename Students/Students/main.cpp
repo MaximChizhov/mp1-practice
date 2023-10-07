@@ -18,7 +18,9 @@ int main()
     read(students, n, f);
     group.setStudents(students);
 
-    cout << group << endl;
+    for (int i = 0; i < n; i++) {
+        cout << *(group.getStudent()[i]) << endl;
+    }
 
     int num = -1;
     while (num != 0)
@@ -45,7 +47,7 @@ int main()
                 for (int j = 0; j < k; j++)
                 {
                     int l = mas[j];
-                    group.printStudents(l);
+                    cout << *(group.getStudent()[l]) << endl;
                 }
             }
             break;
